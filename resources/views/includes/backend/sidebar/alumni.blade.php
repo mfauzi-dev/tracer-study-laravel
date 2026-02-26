@@ -17,7 +17,7 @@
             </li>
 
             <li class="{{ Request::is('alumni/kuesioner*') ? 'active' : '' }}">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('alumni.list.kuesioner') }}">
                     <i class="fas fa-list"></i>
                     <span>Kuesioner</span>
                 </a>

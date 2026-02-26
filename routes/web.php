@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProgramStudiController;
 use App\Http\Controllers\Admin\TahunAkademikController;
 use App\Http\Controllers\Alumni\BiodataController;
 use App\Http\Controllers\Alumni\DashboardController as AlumniDashboardController;
+use App\Http\Controllers\Alumni\KuesionerController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\DashboardController;
@@ -47,6 +48,21 @@ Route::prefix('alumni')->middleware(['auth', 'role:alumni'])->group(function() {
         Route::get('/me', [BiodataController::class, 'show'])->name('alumni.biodata.show');
         Route::get('/edit', [BiodataController::class, 'edit'])->name('alumni.biodata.edit');
         Route::put('/update', [BiodataController::class, 'update'])->name('alumni.biodata.update');
+    });
+
+    Route::prefix('kuesioner')->group(function () {
+        Route::get('/', [KuesionerController::class, 'index'])
+            ->name('alumni.list.kuesioner');
+
+        Route::get('/tabel', [KuesionerController::class, 'table'])
+            ->name('alumni.tabel.kuesioner');
+
+        Route::get('{slug}/jawab', [KuesionerController::class, 'detailPertanyaan'])
+            ->name('alumni.list.pertanyaan');
+        Route::post('{id}/store-jawaban', [KuesionerController::class, 'storeJawaban'])
+            ->name('alumni.list.store-jawaban');
+        Route::put('{id}/update-jawaban', [KuesionerController::class, 'updateJawaban'])
+            ->name('alumni.list.update-jawaban');
     });
 });
 

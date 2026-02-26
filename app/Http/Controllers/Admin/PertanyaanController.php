@@ -66,7 +66,7 @@ class PertanyaanController extends Controller
 
         Pertanyaan::create([
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
+            'slug' => Str::slug($request->name . '-' . Str::random(5)),
             'tahun_akademik_id' => $request->tahun_akademik_id,
             'status' => $request->status,
         ]);
@@ -124,7 +124,7 @@ class PertanyaanController extends Controller
             $pertanyaan = array();
             foreach ($data as $dt) {
                 $pertanyaan = new Pertanyaan();
-                $pertanyaan->slug = Str::slug($dt->pertanyaan . '-' . Str::random(5));
+                $pertanyaan->slug = Str::slug($dt->name . '-' . Str::random(5));
                 $pertanyaan->tahun_akademik_id = $request->thn_akad_satu;
                 $pertanyaan->name = $dt->name;
                 $pertanyaan->status = 1;
