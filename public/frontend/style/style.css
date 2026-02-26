@@ -1,0 +1,133 @@
+body {
+  background-color: #fff;
+  color: #fff;
+  scroll-behavior: smooth;
+}
+
+.btn-login {
+  background-color: #071C4D;
+  color: #fff;
+}
+.btn-login:hover {
+  background-color: #1E3771;
+  color: #fff;
+}
+
+.navbar-brand img {
+  max-height: 40px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #071C4D;
+}
+.navbar-light .navbar-nav .nav-link.active {
+  font-weight: bold;
+  color: #071C4D !important;
+}
+
+.btn-navbar-right {
+  margin-top: -15px !important;
+  margin-bottom: -12px !important;
+  margin-right: -33px !important;
+  height: 70px;
+  border-radius: 0;
+}
+
+header {
+  margin-top: -70px;
+  padding: 250px 0 165px;
+  background-image: linear-gradient(rgba(30,55,113,0.5), rgba(255,255,255,0.1)),url(../image/unibi.jpg);
+  background-size: cover;
+  background-position: center;
+}
+header h1 {
+  color: #fafafa;
+}
+header h1 {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+header .btn-get-started {
+    background-color:#071C4D;
+    color: #fff;
+}
+
+.section-maps {
+    background-color: #1E3771;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    /* background-color: blue; */
+}
+
+.section-maps h3{
+    color: #ffffff;
+    margin-bottom: 50px;
+}
+
+.section-about-contact {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.section-about-contact .about {
+    margin-right: 50px;
+    margin-bottom: 50px;
+}
+
+.section-about-contact .about h4 {
+    color: #1E3771;
+}
+
+.section-about-contact .about p {
+    color: #1E3771;
+    margin-top: 30px;
+}
+
+.section-about-contact .contact .card {
+    padding-left: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: 50px;
+    color: #1E3771;
+}
+
+.section-about-contact .contact .card h4 {
+    color: #1E3771;
+    margin-bottom: 20px;
+}
+
+.section-about-contact .contact .card p {
+    color: #1E3771;
+}
+
+.section-about-contact .contact .card .whatsapp a {
+    font-weight: bold;
+}
+
+.logo-login img {
+    width: 30%;
+    justify-items: center;
+}
+
+.btn-login-submit {
+    background-color: #1E3771;
+    color: #fff;
+}
+
+.section-login {
+    background-image: linear-gradient(rgba(30,55,113,0.5), rgba(255,255,255,0.1)),url(../image/unibi.jpg);
+    background-size: cover;
+    background-position: center;
+    margin-top: -80px;
+    padding: 80px;
+}
+
+.section-login .card {
+    margin-top: 80px;
+}
+
+
+
+
+/*# sourceMappingURL=style.css.map */
