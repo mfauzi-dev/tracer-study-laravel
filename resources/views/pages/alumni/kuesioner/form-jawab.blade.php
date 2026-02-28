@@ -1,94 +1,72 @@
-@extends('layouts.alumni')
-
-@section('title')
-    Jawab Pertanyaan
-@endsection
+@extends('layouts.master')
 
 @section('content')
-    <div class="container">
-        <div class="card shadow">
-            <div class="card-header">
-                {{ $data->tahun_akademik->tahun }}
-            </div>
-            <div class="card-body">
-                @if ($cek < 1)
-                    <form action="{{ route('alumni.list.store-jawaban', $data->id) }}" method="post">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="pertanyaan">{{ $data->pertanyaan }}</label>
-                        </div>
-                        <div class="mb-3">
-                            @if ($pilihan->count())
-                                {{-- @if ($pilihanc) --}}
-                                <label for="pilihan">Silahkan jawab salah satu!</label>
-                                @foreach ($pilihan as $pilih)
-                                    <div class="form-check">
-                                        <input type="radio" name="jawaban" id="{{ $pilih->id }}"
-                                            value="{{ $pilih->pilihan }}" class="form-check-input">
-                                        <label for="{{ $pilih->id }}"
-                                            class="form-check-label">{{ $pilih->pilihan }}</label>
-                                        @error('jawaban')
-                                            <span class="text-danger mt-2">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                @endforeach
-                            @else
-                                <input type="text" name="jawaban" id="pertanyaan" class="form-control mt-2"
-                                    value="{{ old('jawaban') }}">
-                                @error('jawaban')
-                                    <span class="text-danger mt-2">{{ $message }}</span>
-                                @enderror
-                            @endif
-                        </div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                    </form>
+    <div class="section-header">
+        <h1>Kuesioner</h1>
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item active">Kuesioner</div>
+            <div class="breadcrumb-item">List</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+
+            @if (!$dt)
+                <form action="{{ route('alumni.list.store-jawaban', $data->id) }}" method="post">
+                    @csrf
                 @else
                     <form action="{{ route('alumni.list.update-jawaban', $data->id) }}" method="post">
                         @csrf
                         @method('put')
-                        <div class="mb-3">
-                            <label for="pertanyaan">{{ $data->pertanyaan }}</label>
-                        </div>
-                        <div class="mb-3">
-                            @if ($pilihan->count())
-                                {{-- @if ($pilihanc) --}}
-                                <label for="pilihan">Silahkan jawab salah satu!</label>
-                                @foreach ($pilihan as $pilih)
-                                    <div class="form-check">
-                                        <input type="radio" name="jawaban" id="{{ $pilih->id }}"
-                                            value="{{ $pilih->pilihan }}" class="form-check-input"
-                                            {{ $dt->jawaban === $pilih->pilihan ? 'checked' : '' }}>
-                                        <label for="{{ $pilih->id }}"
-                                            class="form-check-label">{{ $pilih->pilihan }}</label>
-                                        @error('jawaban')
-                                            <span class="text-danger mt-2">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                @endforeach
-                            @else
-                                <input type="text" name="jawaban" id="pertanyaan" placeholder="Cth: Bandung, Jawabarat"
-                                    class="form-control mt-2" value="{{ old('jawaban') ?? $dt->jawaban }}">
-                                @error('jawaban')
-                                    <span class="text-danger mt-2">{{ $message }}</span>
-                                @enderror
-                            @endif
-                        </div>
-                        {{-- <div class="mb-3">
-                            <label for="pertanyaan">{{ $data->pertanyaan }}</label>
-                            <input type="text" name="jawaban" id="pertanyaan" class="form-control mt-2"
-                                value="{{ old('jawaban') ?? $dt->jawaban }}">
-                            @error('jawaban')
-                                <span class="text-danger mt-2">{{ $message }}</span>
-                            @enderror
-                        </div> --}}
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">update</button>
-                        </div>
-                    </form>
-                @endif
+            @endif
+
+            <div class="mb-3">
+                <label>{{ $data->name }}</label>
             </div>
+
+            <div class="mb-3">
+
+                @if ($pilihan->count())
+                    <label>Silahkan jawab salah satu!</label>
+
+                    @foreach ($pilihan as $pilih)
+                        <div class="form-check">
+
+                            <input type="radio" name="pilihan_id" id="pilihan{{ $pilih->id }}"
+                                value="{{ $pilih->id }}" class="form-check-input" {{-- CHECKED LOGIC --}}
+                                {{ $dt ? ($dt->pilihan_id == $pilih->id ? 'checked' : '') : '' }}>
+
+                            <label for="pilihan{{ $pilih->id }}" class="form-check-label">
+                                {{ $pilih->pilihan }}
+                            </label>
+
+                        </div>
+                    @endforeach
+
+                    @error('pilihan_id')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                @else
+                    {{-- kalau essay --}}
+                    <input type="text" name="jawaban_teks" class="form-control mt-2"
+                        value="{{ old('jawaban_teks', $dt->jawaban_teks ?? '') }}">
+
+                    @error('jawaban_teks')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                @endif
+
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">
+                    {{ $dt ? 'Update' : 'Save' }}
+                </button>
+            </div>
+
+            </form>
+
         </div>
     </div>
 @endsection

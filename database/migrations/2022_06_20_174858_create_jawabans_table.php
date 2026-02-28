@@ -17,8 +17,9 @@ class CreateJawabansTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('pertanyaan_id')->constrained('pertanyaans')->onDelete('cascade');
-            $table->text('jawaban_teks')->nullable();
+            $table->foreignId('pilihan_id')->nullable()->constrained('pilihans')->onDelete('cascade');
             $table->string('tahun_akademik');
+            $table->string('jawaban_teks')->nullable();
             $table->timestamps();
         });
     }

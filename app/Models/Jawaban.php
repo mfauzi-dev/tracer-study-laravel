@@ -14,8 +14,9 @@ class Jawaban extends Model
     protected $fillable = [
         'user_id',
         'pertanyaan_id',
+        'pilihan_id',
         'tahun_akademik',
-        'jawaban_teks'
+        'jawaban_teks',
     ];
 
     public function pertanyaan()
@@ -26,5 +27,10 @@ class Jawaban extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function pilihan()
+    {
+        return $this->belongsTo(Pilihan::class, 'pilihan_id');
     }
 }
